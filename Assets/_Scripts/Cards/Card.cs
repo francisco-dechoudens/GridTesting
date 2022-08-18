@@ -5,7 +5,7 @@ public class Card
 {
     private Tile[,] _tiles;
 
-    public Card(int[,] data, Tile _grassTile, Tile _mountainTile)
+    public Card(int[,] data, Tile _grassTile, Tile _darkTile)
     {
         _tiles = new Tile[data.GetLength(0), data.GetLength(1)];
 
@@ -18,13 +18,10 @@ public class Card
                 switch (data[x, y])
                 {
                     case 0:
-                        tile = _grassTile;
+                        tile = _darkTile;
                         break;
                     case 1:
                         tile = _grassTile;
-                        break;
-                    case 2:
-                        tile = _mountainTile;
                         break;
                 }
 

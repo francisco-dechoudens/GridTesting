@@ -10,7 +10,7 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private int _width, _height;
 
-    [SerializeField] private Tile _grassTile, _mountainTile;
+    [SerializeField] private Tile _grassTile, _mountainTile, _darkTile;
 
     [SerializeField] private Transform _cam;
 
@@ -27,20 +27,27 @@ public class GridManager : MonoBehaviour
     public void GenerateGrid()
     {
         int[,] data = {
-                        { 2,0,0,2 },
-                        { 2,0,0,2 },
-                        { 2,0,0,2 },
-                        { 2,0,0,2 },
-                        { 2,0,0,2 },
-                        { 0,0,0,0 }
+                        { 0,1,1,0 },
+                        { 0,1,1,0 },
+                        { 0,1,1,0 },
+                        { 0,1,1,0 },
+                        { 0,1,1,0 },
+                        { 1,1,1,1 }
                       };
+
+        string x = $".FF." +
+                   $".FF." +
+                   $".FF." +
+                   $".FF." +
+                   $".FF." +
+                   $"FFFF";
 
         data = ArrayExtensions<int>.Transpose(data);
         data = ArrayExtensions<int>.Reverse2DimArray(data);
 
         _tiles = new Dictionary<Vector2, Tile>();
 
-        _card = new Card(data, _grassTile, _mountainTile);
+        _card = new Card(data, _grassTile, _darkTile);
 
         int initialXPos = 6;
         int initialYPos = 0;
