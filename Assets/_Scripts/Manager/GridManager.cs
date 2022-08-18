@@ -14,13 +14,14 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private Transform _cam;
 
+    private Card _card;
+
     private Dictionary<Vector2, Tile> _tiles;
 
     private void Awake()
     {
         Instance = this;
     }
-
 
 
     public void GenerateGrid()
@@ -38,36 +39,30 @@ public class GridManager : MonoBehaviour
         data = ArrayExtensions<int>.Reverse2DimArray(data);
 
         _tiles = new Dictionary<Vector2, Tile>();
-        for (int x = 0; x < data.GetLength(0); x++)
+
+        _card = new Card(data, _grassTile, _mountainTile);
+
+        int initialXPos = 6;
+        int initialYPos = 0;
+
+
+        for (int x = 0; x < _card.GetCardXSize(); x++)
         {
-            for (int y = 0; y < data.GetLength(1); y++)
+            for (int y = 0; y < _card.GetCardYSize(); y++)
             {
                 //Area de spawning
 
-                Tile randomTile = _grassTile;
 
-                switch (data[x, y])
-                {
-                    case 0:
-                        randomTile = _grassTile;
-                        break;
-                    case 1:
-                        randomTile = _grassTile;
-                        break;
-                    case 2:
-                        randomTile = _mountainTile;
-                        break;
-                }
 
-                //var randomTile = UnityEngine.Random.Range(0, 6) == 3 ? _mountainTile : _grassTile;
-
-                var spawnedTile = Instantiate(randomTile, new Vector3(x, y), Quaternion.identity);
+                var spawnedTile = Instantiate(_card.GetCardTile(x,y), new Vector3(initialXPos + x, initialYPos + y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
                 spawnedTile.Init(x, y);
 
-                _tiles[new Vector2(x, y)] = spawnedTile;
+                _tiles[new Vector2(initialXPos + x, initialYPos + y)] = spawnedTile;
             }
         }
+
+
 
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
 
