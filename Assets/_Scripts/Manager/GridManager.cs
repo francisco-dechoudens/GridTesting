@@ -35,12 +35,12 @@ public class GridManager : MonoBehaviour
                         { 1,1,1,1 }
                       };
 
-        string x = $".FF." +
-                   $".FF." +
-                   $".FF." +
-                   $".FF." +
-                   $".FF." +
-                   $"FFFF";
+        //string x = $".FF." +
+        //           $".FF." +
+        //           $".FF." +
+        //           $".FF." +
+        //           $".FF." +
+        //           $"FFFF";
 
         data = ArrayExtensions<int>.Transpose(data);
         data = ArrayExtensions<int>.Reverse2DimArray(data);
