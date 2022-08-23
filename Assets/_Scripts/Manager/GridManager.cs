@@ -26,14 +26,24 @@ public class GridManager : MonoBehaviour
 
     public void GenerateGrid()
     {
+        //int[,] data = {
+        //                { 0,1,1,0 },
+        //                { 0,1,1,0 },
+        //                { 0,1,1,0 },
+        //                { 0,1,1,0 },
+        //                { 0,1,1,0 },
+        //                { 1,1,1,1 }
+        //              };
+
         int[,] data = {
-                        { 0,1,1,0 },
-                        { 0,1,1,0 },
-                        { 0,1,1,0 },
-                        { 0,1,1,0 },
-                        { 0,1,1,0 },
-                        { 1,1,1,1 }
+                        { 1,0,0,0 },
+                        { 0,0,0,0 },
+                        { 0,0,0,0 },
+                        { 0,0,0,0 },
+                        { 0,0,0,0 },
+                        { 0,0,0,0 }
                       };
+
 
         //string x = $".FF." +
         //           $".FF." +
@@ -42,8 +52,23 @@ public class GridManager : MonoBehaviour
         //           $".FF." +
         //           $"FFFF";
 
+
+        //Card Rotation
+        //0 - no change in data
+
+        //+90
         data = ArrayExtensions<int>.Transpose(data);
         data = ArrayExtensions<int>.Reverse2DimArray(data);
+
+        //+180
+        //data = ArrayExtensions<int>.Transpose(data);
+        //data = ArrayExtensions<int>.Reverse2DimArray(data);
+        //data = ArrayExtensions<int>.Transpose(data);
+        //data = ArrayExtensions<int>.Reverse2DimArray(data);
+
+        //-90
+        //data = ArrayExtensions<int>.Reverse2DimArray(data);
+        //data = ArrayExtensions<int>.Transpose(data);
 
         _tiles = new Dictionary<Vector2, Tile>();
 
